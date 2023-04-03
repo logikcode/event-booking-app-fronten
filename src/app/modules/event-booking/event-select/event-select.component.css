@@ -1,0 +1,215 @@
+.hero {
+    margin: 81px 125px 97px 146px;
+    display: flex;
+    column-gap: 141px;
+    justify-content: right;
+}
+
+.left-hero .left-hero-info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.left-hero .left-hero-info h2 {
+    font-family: 'Sen';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    color: #36143A;
+
+}
+
+.left-hero .left-hero-info p {
+    font-family: 'Sen';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #666666;
+
+}
+
+.right-hero {
+    width: 771px;
+    height: fit-content;
+    border: 1px solid rgba(150, 160, 170, 0.5);
+    border-radius: 4px;
+    padding: 32px 26px 27px 30px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+}
+
+
+.job-heading {
+    display: flex;
+    flex-direction: column;
+    row-gap: 29px;
+}
+
+.job-heading .job-title {
+    display: flex;
+    flex-direction: column;
+    row-gap: 11px;
+}
+
+.job-heading .job-title h2 {
+    font-family: 'Sen';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #1E1E1E;
+}
+
+.job-heading .job-title p {
+    font-family: 'Sen';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #666666;
+}
+
+.job-heading .job-title span {
+    color: black;
+}
+
+.job-heading .duration {
+    font-family: 'Sen';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #666666;
+    display: flex;
+    align-items: center;
+    column-gap: 7.43px;
+}
+
+.job-heading .duration img {
+    height: 17.14px;
+    width: 17.14px;
+}
+
+.job-heading button {
+    padding: 10.6265px 26.5663px;
+    background: #111324;
+    border-radius: 3.54218px;
+    color: white;
+    width: fit-content;
+}
+
+.job-heading button:hover {
+    cursor: pointer;
+}
+
+.job-description {
+    display: flex;
+    flex-direction: column;
+    row-gap: 11px;
+    padding-top: 7px;
+}
+
+.job-description h3 {
+    font-family: 'Sen';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1E1E1E;
+}
+
+.job-description p {
+    font-family: 'Sen';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #666666;
+}
+
+.job-requirements {
+    display: flex;
+    flex-direction: column;
+    row-gap: 11px;
+}
+
+.job-requirements h3 {
+    font-family: 'Sen';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 17px;
+    color: #1E1E1E;
+}
+
+.job-requirements ol {
+    display: flex;
+    flex-direction: column;
+    row-gap: 7px;
+    margin-left: 18px;
+}
+
+.job-requirements li {
+    font-family: 'Sen';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #666666;
+}
+
+
+@media(max-width: 1300px) {
+    .hero {
+        margin: 81px 50px 97px 120px;
+        column-gap: 5%;
+    }
+
+    .left-hero {
+        width: 30%;
+    }
+
+    .right-hero {
+        width: 65%;
+    }
+}
+
+@media(max-width: 1000px) {
+    .hero {
+        column-gap: 2%;
+        margin: 81px 50px 97px 50px;
+    }
+
+    .right-hero {
+        width: 68%;
+    }
+}
+
+@media(max-width: 850px) {
+    .hero {
+        flex-direction: column;
+        row-gap: 30px;
+        margin: 41px 30px 97px 30px;
+    }
+
+    .left-hero {
+        width: 100%;
+    }
+
+    .right-hero {
+        width: 100%;
+    }
+}
+
+@media(max-width: 500px) {
+    .hero {
+        margin: 41px 20px 97px 20px;
+    }
+
+    .right-hero {
+        padding: 25px 15px;
+    }
+}

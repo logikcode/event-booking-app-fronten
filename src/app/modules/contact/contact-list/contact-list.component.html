@@ -1,0 +1,121 @@
+<main class="form-signin vh-100 d-flex justify-content-center align-items-center">
+  <div></div>
+  <div class="col-md-7 col-12">
+    <div class="d-flex justify-content-between align-items-center my-3">
+      <button routerLink="/dashboard" class="btn btn-outline-primary">
+        <span class="iconify" data-icon="ion:return-up-back"></span>
+        Go Home
+      </button>
+      <button class="btn btn-primary" routerLink="/create-contact">
+        Add Contact
+        <span class="iconify fs-3" data-icon="carbon:add-alt"></span>
+      </button>
+    </div>
+    <div class="card p-xl-4">
+      <h4 class="fw-bold">Contact List</h4>
+      <p>Find or delete from your contact list</p>
+
+      <div class="filter-wrapper mx-1 mx-md-5">
+        <div class="dash-form mb-3">
+          <form
+            [formGroup]="form"
+            (ngSubmit)="searchManager.reloadAndShowFirstPage()"
+          >
+            <div class="row g-3 d-flex justify-content-between">
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>First Name</label>
+                  <input type="text" class="form-control" name="contactName" placeholder="Enter First Name"
+                         formControlName="firstName"/>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Last Name</label>
+                  <input type="text" class="form-control" name="lastName" placeholder="Enter Last Name"
+                         formControlName="lastName"/>
+                </div>
+              </div>
+              <div class="col-md-4 text-right">
+                <button
+                  class="btn btn-primary mt-4"
+                  type="submit"
+                  [disabled]="!form.valid"
+                >
+                  <i
+                    class="fa fa-spinner fa-pulse"
+                    *ngIf="searchManager.working"
+                  ></i>&nbsp;
+                  <i class="fa fa-search" *ngIf="!searchManager.working"></i>&nbsp;
+                  Search
+                </button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+      <div class="row search-result-summary" #target *ngIf="searchManager.totalCount >= 0">
+        <div class="col-12 pl-4 pr-4 p-2">
+          <b>&nbsp;Total records:
+            <span>{{ searchManager.totalCount }}</span>
+          </b>
+          <div class="float-end d-md-none" *ngIf="searchManager.totalCount > 0">
+            <pagination [rotate]="true" [boundaryLinks]="true" previousText="&lsaquo;" nextText="&rsaquo;"
+                        firstText="&laquo;" lastText="&raquo;" [totalItems]="searchManager.totalCount"
+                        [itemsPerPage]="searchManager.itemsPerPage" [maxSize]="10" name="page"
+                        [(ngModel)]="searchManager.page"
+                        ngDefaultControl></pagination>
+          </div>
+        </div>
+      </div>
+
+      <page-size [searchManager]="searchManager" *ngIf="searchManager.totalCount > 0"></page-size>
+
+      <div class="table-responsive">
+        <table class="table table-striped table-hover table-borderless">
+          <thead class="thead-light">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First name</th>
+            <th scope="col">Last name</th>
+            <th scope="col">Email address</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+          </tr>
+          </thead>
+          <tbody *ngIf="searchManager.list.length; else noData">
+          <tr *ngFor="let row of searchManager.list; let i = index">
+            <th scope="row">{{ i + searchManager!.offset + 1 }}</th>
+            <td>{{ row.firstName }}</td>
+            <td>{{ row.lastName }}</td>
+            <td>{{ row.email }}</td>
+            <td>{{ row.status }}</td>
+            <td>
+              <button class="btn btn-outline-danger btn-sm px-3" (click)="deleteContact(row.id)">
+                <span class="iconify fs-4" data-icon="fluent:delete-16-filled"></span>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+          <ng-template #noData>
+            <tbody>
+            <tr>
+              <td colspan="7" class="text-center">NO DATA</td>
+            </tr>
+            </tbody>
+          </ng-template>
+        </table>
+      </div>
+      <div class="d-flex justify-content-end" *ngIf="searchManager.totalCount > 0">
+        <pagination [rotate]="true" [boundaryLinks]="true" previousText="&lsaquo;" nextText="&rsaquo;"
+                    firstText="&laquo;" lastText="&raquo;" [totalItems]="searchManager.totalCount"
+                    [itemsPerPage]="searchManager.itemsPerPage" [maxSize]="10" name="page"
+                    [(ngModel)]="searchManager.page"
+                    ngDefaultControl></pagination>
+      </div>
+
+    </div>
+  </div>
+</main>

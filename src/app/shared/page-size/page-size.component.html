@@ -1,0 +1,16 @@
+<div class="bd-5">
+<div class="d-flex">
+  <div>
+    Show
+  </div>
+  <div class="px-1">
+    <select class="form-control p-0 h-auto border-0 bg-transparent border-bottom border-left-0 border-top-0 border-right-0 rounded-0  pr-1" [(ngModel)]="pageLength">
+      <option [selected]="i == 0" *ngFor="let val of pageLengths; let i = index" [value]="val">
+        {{val}}
+      </option>
+    </select>
+  </div>
+  <div> per page</div>
+</div>
+
+</div>

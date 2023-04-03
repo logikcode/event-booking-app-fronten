@@ -1,0 +1,8 @@
+<div class="rounded-2">
+  <div class="" style="display: inline-block !important; padding-right: 2px; font-size: 15px;">Show</div>
+  <div class="px-1 form-group" style="display: inline-block !important;">
+    <select class="form-control ps-2 pe-1" [(ngModel)]="pageLength" (change)="lengthChanged()">
+      <option *ngFor="let count of pageLengths" [value]="count">{{ count }}</option>
+    </select>
+  </div>
+</div>

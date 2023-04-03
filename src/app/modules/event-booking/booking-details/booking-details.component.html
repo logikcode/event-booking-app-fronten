@@ -1,0 +1,99 @@
+<div class="container wrapper">
+  <div class="row">
+    <form [formGroup]="formGroup" class="col-lg-4 order-1">
+      <h5 class="">Add your contact information</h5>
+      <div class="mb-3 mt-5">
+        <label for="cname" class="form-label required">First Name</label>
+        <input type="text" class="form-control" id="cname" placeholder="Enter First Name" formControlName="firstName">
+        <app-field-error *ngIf="(formGroup.get('firstName')?.errors?.required && formGroup.get('firstName')?.touched) || (formGroup.get('firstName')?.errors?.required && errorSubmission)
+              " [message]="'First name cannot be blank.'"></app-field-error>
+        <app-field-error *ngIf="(formGroup.get('firstName')?.errors?.minlength && formGroup.get('firstName')?.touched) ||
+                (formGroup.get('firstName')?.errors?.minlength && errorSubmission)
+              " [message]="'First name cannot be less than two(2) characters.'"></app-field-error>
+        <app-field-error *ngIf="(formGroup.get('firstName')?.errors?.maxlength && formGroup.get('firstName')?.touched) ||
+              (formGroup.get('firstName')?.errors?.maxlength && errorSubmission)"
+                         [message]="'First name cannot be more than fifty(50) characters.'"></app-field-error>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label required">Last Name</label>
+        <input type="text" class="form-control" placeholder="Enter Last Name" formControlName="lastName">
+        <app-field-error *ngIf="(formGroup.get('lastName')?.errors?.required && formGroup.get('lastName')?.touched) ||
+                (formGroup.get('lastName')?.errors?.required && errorSubmission)"
+                         [message]="'Last name cannot be blank.'"></app-field-error>
+        <app-field-error *ngIf="(formGroup.get('lastName')?.errors?.minlength && formGroup.get('lastName')?.touched) ||
+                (formGroup.get('lastName')?.errors?.minlength && errorSubmission) "
+                         [message]="'Last name cannot be less than two(2).'"></app-field-error>
+        <app-field-error *ngIf="(formGroup.get('lastName')?.errors?.maxlength && formGroup.get('lastName')?.touched) ||
+              (formGroup.get('lastName')?.errors?.maxlength && errorSubmission)"
+                         [message]="'Last name cannot be more than fifty(50) characters.'"></app-field-error>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Middle Name</label>
+        <input type="text" class="form-control" placeholder="Enter Middle Name" formControlName="middleName">
+        <app-field-error *ngIf="(formGroup.get('middleName')?.errors?.required && formGroup.get('middleName')?.touched) ||
+                (formGroup.get('middleName')?.errors?.required && errorSubmission)"
+                         [message]="'Middle name cannot be blank.'"></app-field-error>
+        <app-field-error *ngIf="(formGroup.get('middleName')?.errors?.minlength && formGroup.get('middleName')?.touched) ||
+                (formGroup.get('middleName')?.errors?.minlength && errorSubmission) "
+                         [message]="'Middle name cannot be less than two(2).'"></app-field-error>
+        <app-field-error *ngIf="(formGroup.get('middleName')?.errors?.maxlength && formGroup.get('middleName')?.touched) ||
+              (formGroup.get('middleName')?.errors?.maxlength && errorSubmission)"
+                         [message]="'Middle name cannot be more than fifty(50) characters.'"></app-field-error>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label required">Email Address</label>
+        <input type="text" class="form-control" placeholder="Enter Email Address" formControlName="email">
+        <app-field-error *ngIf="(formGroup.get('email')?.errors?.required && formGroup.get('email')?.touched) ||
+              (formGroup.get('email')?.errors?.required && errorSubmission)"
+                         [message]="'Email address cannot be blank.'"></app-field-error>
+        <app-field-error *ngIf="(this.formGroup.get('email').errors?.pattern && formGroup.get('email')?.touched)"
+                         [message]="'Invalid email address pattern.'"></app-field-error>
+
+        <app-field-error class="mt-1" [message]="'Email already exist.'"
+                         *ngIf="formGroup.get('email')!.errors?.emailExists"></app-field-error>
+        <app-field-error *ngIf="(formGroup.get('email')?.errors?.maxlength && formGroup.get('email')?.touched) ||
+              (formGroup.get('email')?.errors?.maxlength && errorSubmission)"
+                         [message]="'Email address cannot be more than fifty(50).'"></app-field-error>
+      </div>
+      <div class="mb-3">
+        <label class="form-label required">Phone Number</label>
+        <ngx-intl-tel-input [cssClass]="'form-control form-control-lg fresh'"
+                            [enableAutoCountrySelect]="true" [enablePlaceholder]="true" [id]="'phoneNumber'"
+                            [maxLength]="'20'" [phoneValidation]="true" [preferredCountries]="preferredCountries"
+                            [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]"
+                            [searchCountryFlag]="false"
+                            [onlyCountries]="['us']"
+                            [selectedCountryISO]="countryISO"
+                            [selectFirstCountry]="true"
+                            formControlName="phoneNumber"></ngx-intl-tel-input>
+        <app-field-error class="mt-1" [message]="'Phone number already exist.'" *ngIf="formGroup.get('phoneNumber')!.errors?.phoneNumberExists"></app-field-error>
+        <app-field-error class="mt-1" [message]="'Phone number is invalid.'" *ngIf="formGroup.get('phoneNumber')!.errors?.invalidPhoneNumber"></app-field-error>
+        <app-field-error *ngIf="(formGroup.get('phoneNumber')?.errors?.required && formGroup.get('phoneNumber')?.touched) ||
+              (formGroup.get('phoneNumber')?.errors?.required && errorSubmission)"
+                         [message]="'Phone number cannot be blank.'"></app-field-error>
+      </div>
+      <div>
+        <button class="btn" (click)="!this.formGroup.invalid ? moveToNext(): submissionForError()">Continue</button>
+      </div>
+    </form>
+    <div class="right-hero order-2">
+
+      <div class="job-heading">
+        <div class="job-title">
+          <h2>{{this.singleEventData?.name | titlecase}}</h2>
+          <p>{{this.singleEventData?.startDate | date: 'd, MMM, y, h:mm a'}}
+            - {{this.singleEventData?.endDate | date : 'd, MMM, y'}} <span
+              class="fa fa-clock-o">{{this.singleEventData?.endDate | date : ' h:mm a'}}</span></p>
+        </div>
+      </div>
+
+      <div class="event-description">
+        <h3>Event Description</h3>
+        <p>{{this.singleEventData?.description}}</p>
+      </div>
+
+    </div>
+  </div>
+</div>

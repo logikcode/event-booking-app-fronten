@@ -1,0 +1,108 @@
+<!--<section class="hero">-->
+
+<!--  <div class="left-hero">-->
+<!--    <div class="left-hero-info">-->
+<!--      <div class="row">-->
+<!--        <div class="col-lg-5 order-1">-->
+<!--          <h5 class=" " style="font-weight: bold">Add your contact information</h5>-->
+<!--          <div class="mb-3 mt-5">-->
+<!--            <ul>-->
+<!--              <li style="font-weight: bold">{{this.singleEventData?.name | titlecase}}</li>-->
+<!--              <li><p>{{this.singleEventData?.startDate | date: 'd, MMM, y, h:mm a'}}-->
+<!--                - {{this.singleEventData?.endDate | date : 'd, MMM, y'}} <span-->
+<!--                  class="fa fa-clock-o">{{this.singleEventData?.endDate | date : ' h:mm a'}}</span></p>-->
+<!--              </li>-->
+<!--              <li>{{this.singleEventData?.address?.street + ' ' + this.singleEventData?.address?.townOrCity | titlecase}}</li>-->
+<!--            </ul>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <a style="cursor:pointer;" (click)="applicantEmit.emit()">Edit</a>-->
+<!--            <ul>-->
+<!--              <li>{{firstForm?.firstName + ' ' + firstForm?.middleName + ' ' + firstForm?.lastName}}</li>-->
+<!--              <li>{{firstForm?.email}}</li>-->
+<!--              <li>{{firstForm?.phoneNumber?.number}}</li>-->
+
+<!--            </ul>-->
+<!--          </div>-->
+<!--          <div class="mb-3">-->
+<!--            <a style="cursor:pointer;" (click)="this.documentEmit.emit()">Edit</a>-->
+<!--            <ul class="mt-1" *ngFor="let item of this.file">-->
+<!--              <li>{{this.item?.fileName}}</li>-->
+<!--            </ul>-->
+<!--          </div>-->
+
+<!--          <button class="btn" (click)="finalSubmission.emit()">Submit Booking</button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+
+
+
+
+
+
+
+
+
+
+
+<section class="container">
+  <div class="card">
+    <div class="card-body">
+      <h5 class="">{{this.singleEventData?.name | titlecase}}</h5>
+      <p class="m-0">{{this.singleEventData?.address?.street + ' ' + this.singleEventData?.address?.townOrCity | titlecase}}</p>
+      <p class="m-0">{{this.singleEventData?.startDate | date: 'd, MMM y, h:mm a'}}</p>
+    </div>
+  </div>
+  <div class="card mt-3">
+    <div class="card-body">
+      <h5 class="mb-4">Please review your application</h5>
+      <div class="row">
+        <div class="col">Contact information</div>
+        <div class="col-auto float-end fw-bold" style="cursor:pointer;" (click)="applicantEmit.emit()">Edit</div>
+      </div>
+      <div class="card mt-3 mb-5">
+        <div class="card-body">
+          <div class="name mb-5">
+            <p class="mb-0">Full Name</p>
+            <p class="fw-bold">{{firstForm?.firstName + ' ' + firstForm?.middleName + ' ' + firstForm?.lastName}}</p>
+          </div>
+          <div class="name mb-5">
+            <p class="mb-0">Email Address</p>
+            <p class="fw-bold">{{firstForm?.email}}</p>
+          </div>
+          <div class="name mb-2">
+            <p class="mb-0">Phone Number</p>
+            <p class="fw-bold">{{firstForm?.phoneNumber?.number}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">Documents</div>
+        <div class="col-auto float-end fw-bold" style="cursor:pointer;" (click)="this.documentEmit.emit()">Edit</div>
+      </div>
+      <div class="card mt-3 mb-5">
+        <div class="card-body">
+          <div class="name mb-2">
+            <p class="mb-0">Passport and supporting Documents</p>
+            <div class="card border-0 p-1 mt-3 mb-3" *ngFor="let item of this.file; let index = index">
+              <div class="row d-flex align-items-center justify-items-center">
+                <div class="col"><p class="pb-0 p-3 text-truncate w-75"> {{item.fileName}} </p> </div>
+                <div class="col-auto" (click)="removeFiles(index)" style="cursor: pointer"><iconify-icon class="float-end " inline icon="material-symbols:close-rounded" width="39"></iconify-icon></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card border-0 mt-3">
+        <div class="card-body">
+          <div class="cv mb-2">
+          </div>
+        </div>
+      </div>
+      <button class="btn" (click)="finalSubmission.emit()">Submit Booking</button>
+    </div>
+  </div>
+</section>

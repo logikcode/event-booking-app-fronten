@@ -1,0 +1,13 @@
+<main class="p-3 mt-2 mb-4">
+  <div class="card border-light container-fluid success">
+    <div class="card-body">
+<!--      <h5 class="card-title">{{this.title}}</h5>h5-->
+      <iconify-icon icon="material-symbols:check-circle-rounded" style="color: green;" width="180" *ngIf="isSuccess"></iconify-icon>
+      <iconify-icon icon="ci:error" style="color: red;" width="200" *ngIf="!isSuccess"></iconify-icon>
+      <p class="card-text">{{this.message}}</p>
+      <a (click)="this.buttonClicked()" class="btn btn-md btn-primary w-75 mt-4">Done</a>
+      <br>
+      <br>
+    </div>
+  </div>
+</main>

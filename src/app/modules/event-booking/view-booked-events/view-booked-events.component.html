@@ -1,0 +1,233 @@
+<!--<div></div>-->
+
+<!--<div class="container">-->
+<!--  <div class="d-flex justify-content-between align-items-center my-3">-->
+<!--    <button routerLink="/dashboard" class="btn btn-dark">-->
+<!--      <span class="iconify" data-icon="ion:return-up-back"></span>-->
+<!--      Go Home-->
+<!--    </button>-->
+<!--  </div>-->
+
+<!--  <div class="card bg-transparent p-xl-4 p-3">-->
+<!--    <h4 class="fw-bold">View Booked Events</h4>-->
+
+<!--    <div class="filter-wrapper mx-1 mx-md-5">-->
+<!--      <div class="dash-form mb-3">-->
+<!--        <form [formGroup]="form">-->
+<!--          <div class="row g-3 d-flex justify-content-between">-->
+<!--            <div class="col-md-4">-->
+<!--              <div class="form-group">-->
+<!--                <label>Applier</label>-->
+<!--                <input type="text" class="form-control" formControlName="Applicant" placeholder="Enter first name"-->
+<!--                />-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--              <div class="form-group">-->
+<!--                <label>Event</label>-->
+<!--                <input type="text" class="form-control" formControlName="Events" placeholder="Enter event"-->
+<!--                />-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--              <div class="form-group">-->
+<!--                <label>Date Created</label>-->
+<!--                <input type="text" class="form-control" formControlName="Date Created" placeholder="Enter date"-->
+<!--                />-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-4 text-right">-->
+<!--              <button-->
+<!--                class="btn btn-primary mt-4"-->
+<!--                type="submit"-->
+<!--                (click)="onSearchClick()"-->
+<!--              >-->
+<!--                <i-->
+<!--                  class="fa fa-spinner fa-pulse"-->
+<!--                  *ngIf="searching"-->
+<!--                ></i>&nbsp;-->
+<!--                <i class="fa fa-search" *ngIf="!searching"></i>&nbsp;-->
+<!--                Search-->
+<!--              </button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="row search-result-summary">-->
+<!--      <div class="col-12 pl-4 pr-4 p-2">-->
+<!--        <b>&nbsp;Total records:-->
+<!--          <span>{{this.queryResults?.total || 0}}</span>-->
+<!--        </b>-->
+<!--      </div>-->
+<!--    </div>-->
+
+<!--    <div class="table-responsive">-->
+<!--      <table class="table table-striped table-hover table-borderless">-->
+<!--        <thead>-->
+<!--        <th>S/N</th>-->
+<!--        <th>Event Applier</th>-->
+<!--        <th>Event</th>-->
+<!--        <th>Date Created</th>-->
+<!--        </thead>-->
+
+<!--        <tbody>-->
+
+<!--        <tr *ngFor="let aff of this.resultSubject.value.results; let i = index;" [id]="'action' + i">-->
+
+<!--          <td>{{i + 1}}</td>-->
+<!--          <td>{{aff.eventApplier?.firstName + " " + aff.eventApplier?.lastName + " "}}</td>-->
+<!--          <td>{{aff.event?.name}}</td>-->
+<!--          <td>{{aff.createdAt | date}}</td>-->
+<!--        </tr>-->
+<!--        </tbody>-->
+
+<!--        <ng-template *ngIf="resultArray?.length == 0">-->
+<!--          <tbody>-->
+<!--          <tr>-->
+<!--            <td colspan="7" class="text-center">NO DATA</td>-->
+<!--          </tr>-->
+<!--          </tbody>-->
+<!--        </ng-template>-->
+<!--      </table>-->
+<!--    </div>-->
+
+<!--  </div>-->
+<!--</div>-->
+
+
+<div></div>
+
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center my-3">
+    <button routerLink="/dashboard" class="btn btn-dark">
+      <span class="iconify" data-icon="ion:return-up-back"></span>
+      Go Home
+    </button>
+  </div>
+
+  <div class="card bg-transparent p-xl-4 p-3">
+    <h4 class="fw-bold">View Booked Events</h4>
+
+    <div class="filter-wrapper mx-1 mx-md-5">
+      <div class="dash-form mb-3">
+        <form [formGroup]="form">
+          <div class="row g-3 d-flex justify-content-between">
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Applicant</label>
+                <input type="text" class="form-control" formControlName="applicant" placeholder="Enter first name"
+                />
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Events</label>
+                <input type="text" class="form-control" formControlName="events" placeholder="Enter event"
+                />
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Date Created(from)</label>
+                <div class="input-group">
+                  <input class="form-control" placeholder="MM-DD-YYYY" formControlName="startDate"
+                         [minDate]="{ year: 1910, month: 1, day: 1 }" [(ngModel)]="ngModel"
+                         ngbDatepicker #startDate="ngbDatepicker" (click)="startDate.toggle()"/>
+                  <span (click)="startDate.toggle()" class="btn-primary-outline input-group-text">
+                      <i class="fa fa-calendar"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Date Created(to)</label>
+                <div class="input-group">
+                  <input class="form-control" placeholder="MM-DD-YYYY" formControlName="endDate"
+                         [minDate]="{ year: 1910, month: 1, day: 1 }" [(ngModel)]="ngModel1"
+                         ngbDatepicker #endDate="ngbDatepicker" (click)="endDate.toggle()"/>
+                  <span (click)="endDate.toggle()" class="btn-primary-outline input-group-text">
+                    <i class="fa fa-calendar"></i>
+                  </span>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md-3 text-right">
+              <button
+                class="btn btn-dark mt-4"
+                type="submit"
+                (click)="onSearchClick()"
+              >
+                <i
+                  class="fa fa-spinner fa-pulse"
+                  *ngIf="searching"
+                ></i>&nbsp;
+                <i class="fa fa-search" *ngIf="!searching"></i>&nbsp;
+                Search
+              </button>
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
+  <div class="row search-result-summary">
+    <div class="col-12 pl-4 pr-4 p-2">
+      <b>&nbsp;Total records:
+        <span>{{this.queryResults?.total || 0}}</span>
+      </b>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-hover table-borderless">
+      <thead>
+      <th>S/N</th>
+      <th>Applicant</th>
+      <th>Event</th>
+      <th>Date Created</th>
+      <th>Action</th>
+      </thead>
+
+      <tbody>
+
+      <tr class="pointer" *ngFor="let aff of this.resultSubject.value.results; let i = index;" [id]="'action' + i">
+
+        <td>{{i + 1}}</td>
+        <td>{{aff.eventApplier?.firstName + " " + aff.eventApplier?.lastName + " "}}</td>
+        <td>{{aff.event?.name}}</td>
+        <td>{{aff.createdAt | date}}</td>
+        <td class="d-flex align-items-center">
+            <span (click)="deleteBookedEvent(aff?.id)" style="cursor: pointer">
+              <iconify-icon icon="material-symbols:delete-outline-rounded" style="color: red;"></iconify-icon>
+            </span>
+          <span class="mx-2" [routerLink]="['/booked-event/update']" >
+              <iconify-icon icon="material-symbols:edit-square-outline-rounded" style="color: #2a2a2a;"></iconify-icon>
+            </span>
+        </td>
+      </tr>
+      </tbody>
+
+      <ng-template *ngIf="resultArray?.length == 0">
+        <tbody>
+        <tr>
+          <td colspan="7" class="text-center">NO DATA</td>
+        </tr>
+        </tbody>
+      </ng-template>
+    </table>
+  </div>
+</div>
+  <div class="align-items-center d-flex justify-content-between rounded-top px-2 py-2 mt-3"
+       style="margin-bottom: -1rem; color: #4e3367">
+    <app-page-length [pageLength]="getFilter().limit || 10"
+                     (pageLengthChanged)="changeLimit($event)"></app-page-length>
+    <div class="add-group-btn text-right mt-3 mb-3">
+      <pagination (pageChanged)="onPageChange($event)" [boundaryLinks]="true" [itemsPerPage]="limit || 10"
+                  [(ngModel)]="page" [maxSize]="5" [totalItems]="this.resultSubject.value.total || 0"
+                  firstText="&laquo;" lastText="&raquo;" nextText="&rsaquo;" previousText="&lsaquo;"></pagination>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+
+<form [formGroup]="form">
+  <div class="input-wrapper">
+    <p>Name of event</p>
+    <input type="text" formControlName="nameOfEvent" id="1" placeholder="Enter Event name">
+  </div>
+  <div class="input-wrapper">
+    <p>Location</p>
+    <input type="text" formControlName="location" id="3" placeholder="Enter location">
+  </div>
+  <div class="input-wrapper">
+    <p>Date Posted</p>
+    <div class="input-group">
+      <input class="form-control" placeholder="MM-DD-YYYY" formControlName="dateOfEvent"
+             [minDate]="{ year: 1910, month: 1, day: 1 }" [(ngModel)]=ngModel
+             ngbDatepicker #endDate="ngbDatepicker" (click)="endDate.toggle()"/>
+      <span (click)="endDate.toggle()" class="btn-primary-outline input-group-text">
+      <i class="fa fa-calendar"></i>
+    </span>
+    </div>
+  </div>
+  <div class="button-wrap">
+    <button type="submit" (click)="onSearchClick()"><img src="./assets/img/Search.svg" alt=""> Search</button>
+  </div>
+</form>
+
+<section class="row info-display mb-3">
+
+  <div class="col-lg-4 mt-3 mb-3">
+    <div class="">
+      <h2>Events Near You</h2>
+      <p>Here are the Events around you!</p>
+    </div>
+  </div>
+
+  <div class="col-lg-8 mb-3 mt-3">
+    <div class="card bg-transparent mt-4 mb-4" *ngFor="let event of this.resultSubject.value.results; let i = index;" [id]="'action' + i">
+      <div class="card-header" style="cursor: pointer" [routerLink]="['/event-listings', event.id]">
+        <div class="card-body">
+          <div class="card-title">
+            <div class="row mb-3">
+              <div class="col">
+                <a><h3>{{event?.name}}</h3></a>
+              </div>
+              <div class="col">
+                <span class="badge bg-secondary float-end p-2 rounded-5">{{event?.address?.townOrCity}}</span>
+              </div>
+            </div>
+
+          </div>
+          <div class="description">
+            <p>{{event?.description}}</p>
+          </div>
+          <p><iconify-icon inline icon="simple-line-icons:calender"></iconify-icon> {{this.event?.startDate | date: 'd, MMM, y, h:mm a'}} - {{this.event?.endDate | date : 'd, MMM, y'}} <span class="fa fa-clock-o">{{this.event?.endDate | date : ' h:mm a'}}</span></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="align-items-center d-flex justify-content-between rounded-top info-display px-2 py-2 mt-3"
+     style="margin-bottom: -1rem; color: #4e3367">
+  <app-page-length class="d-none d-md-block" [pageLength]="getFilter().limit || 5"
+                   (pageLengthChanged)="changeLimit($event)"></app-page-length>
+  <div class="add-group-btn text-right mt-3 mb-3">
+    <pagination (pageChanged)="onPageChange($event)" [boundaryLinks]="true" [itemsPerPage]="limit || 5"
+                [(ngModel)]="page" [maxSize]="5" [totalItems]="this.resultSubject.value.total || 0"
+                firstText="&laquo;" lastText="&raquo;" nextText="&rsaquo;" previousText="&lsaquo;"></pagination>
+  </div>
+</div>
+

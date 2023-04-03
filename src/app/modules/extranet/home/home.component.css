@@ -1,0 +1,18 @@
+.bg-test {
+  background: url("../../../../assets/img/pexels-felix-mittermeier-957085.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.main-text {
+  font-size: 52px;
+}
+.onboard-card {
+  padding: 6rem 4rem;
+}
+.onboard-overlay {
+  background-color: rgba(0, 0, 0, 0.726);
+}
+.vh-100 {
+  height: 100vh !important;
+}

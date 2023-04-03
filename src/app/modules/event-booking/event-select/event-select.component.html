@@ -1,0 +1,27 @@
+<section class="hero">
+
+  <div class="left-hero">
+    <div class="left-hero-info">
+      <h2>{{this.singleEventData?.name}}</h2>
+      <p>{{this.singleEventData?.name + ' at ' +this.singleEventData?.address?.street}}</p>
+    </div>
+  </div>
+
+  <div class="right-hero">
+
+    <div class="job-heading">
+      <div class="job-title">
+        <h2>{{this.singleEventData?.name | titlecase}}</h2>
+        <p>{{this.singleEventData?.startDate | date: 'd, MMM, y, h:mm a'}} - {{this.singleEventData?.endDate | date : 'd, MMM, y'}} <span class="fa fa-clock-o">{{this.singleEventData?.endDate | date : ' h:mm a'}}</span></p>
+      </div>
+
+      <button type="submit" [routerLink]="['/event-listings/booking', this.singleEventData?.id]">Book Now</button>
+    </div>
+
+    <div class="event-description">
+      <h3>Event Description</h3>
+      <p>{{this.singleEventData?.description}}</p>
+    </div>
+
+  </div>
+</section> 

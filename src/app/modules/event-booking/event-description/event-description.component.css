@@ -1,0 +1,37 @@
+.wrapper {
+    margin-top: 10rem;
+}
+
+.wrapper p {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 32px;
+    color: #666666;
+}
+
+.wrapper h5 {
+    font-style: normal;
+    /* font-weight: 400; */
+    /* font-size: 18px; */
+    line-height: 32px;
+    color: #36143A;
+}
+
+label {
+    color: #36143A;
+}
+
+.btn {
+    padding: 10.6265px 26.5663px;
+    background: #111324;
+    border-radius: 3.54218px;
+    color: white;
+    width: fit-content;
+    margin-top: 1rem;
+}
+
+.form-section{
+    overflow-y: auto;
+    height: 486.17px;
+}

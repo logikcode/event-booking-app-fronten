@@ -1,0 +1,42 @@
+.wrapper{
+  margin-top: 10rem;
+}
+
+.wrapper p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 32px;
+  color: #666666;
+}
+
+.wrapper h5 {
+  font-style: normal;
+  /* font-weight: 400; */
+  /* font-size: 18px; */
+  line-height: 32px;
+  color: #36143A;
+}
+
+label{
+  color: #36143A;
+}
+
+.btn {
+  padding: 10.6265px 26.5663px;
+  background: #111324;
+  border-radius: 3.54218px;
+  color: white;
+  width: fit-content;
+  margin-top: 1rem;
+}
+.right-hero {
+  width: 771px;
+  height: fit-content;
+  border: 1px solid rgba(150, 160, 170, 0.5);
+  border-radius: 4px;
+  padding: 32px 26px 27px 30px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+}

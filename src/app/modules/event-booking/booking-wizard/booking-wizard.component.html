@@ -1,0 +1,13 @@
+<aw-wizard [navBarLayout]="null" [defaultStepIndex]="0">
+  <aw-wizard-step>
+    <app-booking-details (nextButtonClicked)="firstFormDetails($event)"></app-booking-details>
+  </aw-wizard-step>
+  <aw-wizard-step>
+    <app-booking-details-two (nextButtonClicked)="secondFormDetails($event)"></app-booking-details-two>
+  </aw-wizard-step>
+  <aw-wizard-step>
+    <app-view-details (applicantEmit)="goToApplicant()"
+                      (finalSubmission)="finalSubmission($event)" (documentEmit)="goToDocumentPage()"
+                      [secondStepDetails]="secondStepDetails" [firstFormDetails]="formOneGroup"></app-view-details>
+  </aw-wizard-step>
+</aw-wizard>

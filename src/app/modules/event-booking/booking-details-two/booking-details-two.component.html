@@ -1,0 +1,53 @@
+<div class="container wrapper">
+  <div class="row">
+    <div class="col-lg-4 order-1 px-lg-4">
+      <h5 class="" style="font-weight: bold">Add a passport photograph and
+        supporting documents</h5>
+      <div class="mb-3 mt-5">
+        <div *ngIf="showErrorMessageTrigger">
+          <div class="alert-danger alert border m-0 mb-3 rounded-2 p-4 alert-dismissible fade show" role="alert">
+            <p class="m-0 p-0 d-flex align-items-start">
+          <span>
+            <iconify-icon class="iconify me-2" icon="ep:info-filled"></iconify-icon>
+            {{ getErrorMessage() }}
+          </span>
+              <iconify-icon class="iconify fs-4 ms-auto pointer" icon="mdi:close"
+                            data-bs-dismiss="alert"></iconify-icon>
+            </p>
+          </div>
+        </div>
+        <label for="cname" class="form-label required">Maximum number of uploads is five. We only accept pdf, jpg,
+          png and bmp formats</label>
+        <input type="file" class="form-control" id="cname" (change)="onFileChange($event)">
+
+        <div class="card border-0 p-1 mt-3 mb-3" *ngFor="let item of this.savedFiles; let index = index">
+          <div class="row d-flex align-items-center justify-items-center">
+            <div class="col"><p class="pb-0 p-3 text-truncate w-75"> {{item.fileName}} </p> </div>
+            <div class="col-auto" (click)="removeFiles(index)" style="cursor: pointer"><iconify-icon class="float-end " inline icon="material-symbols:close-rounded" width="32"></iconify-icon></div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button class="btn mb-3" (click)="moveToSummaryPage()">Continue</button>
+      </div>
+    </div>
+    <div class="col-lg-8 right order-2">
+
+      <div class="job-heading mb-5">
+        <div class="job-title">
+          <h2 class="description-header" style="font-size: 18px">{{this.singleEventData?.name | titlecase}}</h2>
+          <p class="description-itself">{{this.singleEventData?.startDate | date: 'd, MMM, y, h:mm a'}}
+            - {{this.singleEventData?.endDate | date : 'd, MMM, y'}} <span
+              class="fa fa-clock-o">{{this.singleEventData?.endDate | date : ' h:mm a'}}</span></p>
+        </div>
+      </div>
+
+      <div class="event-description">
+        <h3 class="description-header" style="font-size: 16px;">Event Description</h3>
+        <p class="description-itself">{{this.singleEventData?.description}}</p>
+      </div>
+
+    </div>
+  </div>
+</div>

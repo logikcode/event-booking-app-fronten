@@ -1,0 +1,82 @@
+<main
+  class="form-signin vh-100 d-flex justify-content-center align-items-center"
+>
+  <div class="col-5">
+    <div class="card p-xl-4">
+      <div class="card-body">
+        <form [formGroup]="form"
+          (ngSubmit)="createContact()">
+          <img class="mb-5" src="/assets/img/bw-sticky-logo-small.png" alt="" />
+          <p class="mb-3 fw-normal text-start">
+            Kindly fill the form and submit to create.
+          </p>
+
+          <div class="form-floating mb-4">
+            <input
+              type="text"
+              class="form-control"
+              id="firstName"
+              name="firstName"
+              placeholder="Enter firstname"
+              formControlName="firstName"
+              autocomplete="off"
+            />
+            <label for="floatingInput">First name</label>
+            <div
+              *ngIf="form.get('firstName')!.hasError('pattern')"
+              class="errors"
+            >
+              Invalid firstname
+            </div>
+          </div>
+          <div class="form-floating mb-4">
+            <input
+              type="text"
+              class="form-control"
+              id="lastName"
+              name="lastName"
+              placeholder="Enter lastname"
+              formControlName="lastName"
+              autocomplete="off"
+            />
+            <label for="floatingInput">Last name</label>
+            <div
+              *ngIf="form.get('lastName')!.hasError('pattern')"
+              class="errors"
+            >
+              Invalid lastname
+            </div>
+          </div>
+          <div class="form-floating mb-4">
+            <input
+              type="text"
+              class="form-control"
+              id="email"  
+              name="email"
+              placeholder="Enter email"
+              formControlName="email"
+              autocomplete="off"
+            />
+            <label for="floatingInput">Email</label>
+            <div
+              *ngIf="form.get('email')!.hasError('pattern')"
+              class="errors"
+            >
+              Invalid email
+            </div>
+          </div>
+          <div class="form-floating mb-4">
+            <select class="pull-right form-control bg-white" formControlName="gender">
+              <option value="">Select Gender</option>
+              <option value="MALE">MALE</option>
+              <option value="FEMALE">FEMALE</option>
+            </select>
+          </div>
+          <div class="text-end">
+            <button class="btn btn-lg btn-success" type="submit">Create</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
