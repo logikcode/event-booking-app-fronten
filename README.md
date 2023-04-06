@@ -3,7 +3,7 @@
 To be able to run this project, you need to run `npm i`,  generate SDk by running the command `npm generate-core-api-sdk:local` then run `ng serve` to start the application
 
 
-# BwFullstckReferenceFrontend
+# EventBookingApp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.5.
 
